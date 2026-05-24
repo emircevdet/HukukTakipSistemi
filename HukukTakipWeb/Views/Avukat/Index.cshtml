@@ -1,0 +1,151 @@
+@model List<HukukTakipWeb.Models.Avukat>
+
+@{
+    ViewData["Title"] = "Avukat Yönetimi";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold">Avukat Yönetimi</h2>
+        
+        
+    </div>
+
+    <a href="/Avukat/Create" class="btn btn-success">
+        + Yeni Avukat Ekle
+    </a>
+</div>
+
+<div class="card shadow-sm border-0 mb-4">
+    <div class="card-body">
+
+        <form method="get" action="/Avukat">
+
+            <div class="row g-2">
+
+                <div class="col-md-10">
+                    <input type="text"
+                           name="arama"
+                           class="form-control"
+                           placeholder="Ad, soyad, kullanıcı adı, TCKN veya vergi no ara"
+                           value="@ViewBag.Arama" />
+                </div>
+
+                <div class="col-md-2 d-grid">
+                    <button type="submit" class="btn btn-dark">
+                        Ara
+                    </button>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<div class="card shadow-sm border-0">
+
+    <div class="card-header bg-dark text-white">
+        <strong>Avukat Listesi</strong>
+    </div>
+
+    <div class="card-body p-0">
+
+        <table class="table table-striped table-hover mb-0 align-middle">
+
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Ad Soyad</th>
+                    <th>Kullanıcı Adı</th>
+                    <th>TCKN</th>
+                    <th>Telefon</th>
+                    <th>Email</th>
+                    <th>Şehir</th>
+                    <th>Avukat Tipi</th>
+                    <th>Durum</th>
+                    <th class="text-center" style="width:180px;">
+                        İşlemler
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var avukat in Model)
+                    {
+                        <tr>
+
+                            <td>@avukat.AvukatId</td>
+
+                            <td>
+                                @avukat.Adi @avukat.Soyadi
+                            </td>
+
+                            <td>@avukat.KullaniciAdi</td>
+
+                            <td>@avukat.Tckn</td>
+
+                            <td>@avukat.CepTelefonu</td>
+
+                            <td>@avukat.EMailAdresi</td>
+
+                            <td>@avukat.Sehir</td>
+
+                            <td>@avukat.AvukatTipi</td>
+
+                            <td>
+                                @if (avukat.HesapAktifMi)
+                                {
+                                    <span class="badge bg-success">
+                                        Aktif
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">
+                                        Pasif
+                                    </span>
+                                }
+                            </td>
+
+                            <td class="text-center">
+
+                                <a href="/Avukat/Edit/@avukat.AvukatId"
+                                   class="btn btn-warning btn-sm">
+                                    Güncelle
+                                </a>
+
+                                <a href="/Avukat/Delete/@avukat.AvukatId"
+                                   class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Bu avukatı silmek istediğine emin misin?');">
+                                    Sil
+                                </a>
+
+                            </td>
+
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="10"
+                            class="text-center text-muted py-4">
+
+                            Kayıtlı avukat bulunamadı.
+
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

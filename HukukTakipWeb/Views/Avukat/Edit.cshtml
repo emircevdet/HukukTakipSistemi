@@ -1,0 +1,272 @@
+@model HukukTakipWeb.Models.Avukat
+
+@{
+    ViewData["Title"] = "Avukat Güncelle";
+}
+
+<div class="card shadow border-0 mb-5">
+
+    <div class="card-header bg-dark text-white">
+        <h4 class="mb-0">Avukat Güncelle</h4>
+    </div>
+
+    <div class="card-body">
+
+        <form asp-controller="Avukat"
+              asp-action="Edit"
+              asp-route-id="@Model.AvukatId"
+              method="post">
+
+            <input type="hidden" asp-for="AvukatId" />
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <div class="mb-3">
+                        <label>Adı</label>
+                        <input asp-for="Adi" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Soyadı</label>
+                        <input asp-for="Soyadi" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Kullanıcı Adı</label>
+                        <input asp-for="KullaniciAdi" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Vergi No</label>
+                        <input asp-for="VergiNo" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Cep Telefonu</label>
+                        <input asp-for="CepTelefonu" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>İş Telefonu No</label>
+                        <input asp-for="IsTelefonNo" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>İş Fax No</label>
+                        <input asp-for="IsFaxNo" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Avans Hesap Şubesi</label>
+                        <input asp-for="AvansHesapSubesi" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Avans Hesap No</label>
+                        <input asp-for="AvansHesapNo" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="d-block">Dosya Dağıtım</label>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input"
+                                   type="radio"
+                                   asp-for="DosyaDagitim"
+                                   value="true" />
+                            <label class="form-check-label">Evet</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input"
+                                   type="radio"
+                                   asp-for="DosyaDagitim"
+                                   value="false" />
+                            <label class="form-check-label">Hayır</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Avans Aşım Limiti</label>
+                        <input asp-for="AvansAsimLimiti" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Avukat Tipi</label>
+
+                        <select asp-for="AvukatTipi" class="form-control">
+                            <option value="">Seçiniz</option>
+                            <option>Kadrolu</option>
+                            <option>Sözleşmeli</option>
+                            
+                        </select>
+                    </div>
+
+                    <div class="form-check mb-2">
+                        <input asp-for="IletisimVerilsinMi" class="form-check-input" />
+                        <label class="form-check-label">İletişim Verilsin Mi</label>
+                    </div>
+
+                    <div class="form-check mb-2">
+                        <input asp-for="Dialogdan" class="form-check-input" />
+                        <label class="form-check-label">Dialogdan</label>
+                    </div>
+
+                    <div class="form-check mb-2">
+                        <input asp-for="DialogYasal" class="form-check-input" />
+                        <label class="form-check-label">DialogYasal</label>
+                    </div>
+
+                    <div class="form-check mb-2">
+                        <input asp-for="Normal" class="form-check-input" />
+                        <label class="form-check-label">Normal</label>
+                    </div>
+
+                    <div class="form-check mb-4">
+                        <input asp-for="HesapAktifMi" class="form-check-input" />
+                        <label class="form-check-label">Hesap Aktif Mi?</label>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="mb-3">
+                        <label>Müşteri No</label>
+                        <input asp-for="MusteriNo" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>TCKN</label>
+                        <input asp-for="Tckn" maxlength="11" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Vergi Dairesi</label>
+                        <input asp-for="VergiDairesi" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Şehir</label>
+                        <input asp-for="Sehir" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>İlçe</label>
+                        <input asp-for="Ilce" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>E-Mail Adresi</label>
+                        <input asp-for="EMailAdresi" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Vadesiz Hesap Şubesi</label>
+                        <input asp-for="VadesizHesapSubesi" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Vadesiz Hesap No</label>
+                        <input asp-for="VadesizHesapNo" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Tam Adres</label>
+                        <textarea asp-for="TamAdres"
+                                  rows="4"
+                                  class="form-control"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Halkbank Vadesiz IBAN No</label>
+                        <input asp-for="HalkbankVadesizIbanNo"
+                               class="form-control iban-input"
+                               maxlength="26"
+                               placeholder="TR________________________" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Diğer Banka IBAN No</label>
+                        <input asp-for="DigerBankaIbanNo"
+                               class="form-control iban-input"
+                               maxlength="26"
+                               placeholder="TR________________________" />
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr />
+
+            <div class="d-flex justify-content-end mt-4 pb-3">
+                <button type="submit" class="btn btn-warning me-2">
+                    Güncelle
+                </button>
+
+                <a href="/Avukat" class="btn btn-secondary">
+                    İptal
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+@section Scripts {
+
+<script>
+
+document.querySelectorAll(".iban-input").forEach(function (input) {
+
+    if (!input.value || input.value.trim() === "") {
+        input.value = "TR";
+    }
+
+    input.addEventListener("focus", function () {
+
+        if (!input.value.startsWith("TR")) {
+            input.value = "TR";
+        }
+
+    });
+
+    input.addEventListener("input", function () {
+
+        let value = input.value.toUpperCase();
+
+        value = value.replace(/[^A-Z0-9]/g, "");
+
+        if (!value.startsWith("TR")) {
+            value = "TR" + value.replace(/^TR/, "");
+        }
+
+        let sayisalKisim =
+            value.substring(2).replace(/\D/g, "");
+
+        input.value =
+            "TR" + sayisalKisim.substring(0, 24);
+
+    });
+
+    input.addEventListener("keydown", function (e) {
+
+        if (
+            input.selectionStart <= 2 &&
+            (e.key === "Backspace" || e.key === "Delete")
+        ) {
+            e.preventDefault();
+        }
+
+    });
+
+});
+
+</script>
+
+}

@@ -1,0 +1,132 @@
+@model HukukTakipWeb.Models.Ihtar
+
+@{
+    ViewData["Title"] = "İhtar Güncelle";
+}
+
+<div class="card shadow border-0 mb-5">
+
+    <div class="card-header bg-dark text-white">
+        <h4 class="mb-0">İhtar Güncelle</h4>
+    </div>
+
+    <div class="card-body">
+
+        <form asp-controller="Ihtar"
+              asp-action="Edit"
+              asp-route-id="@Model.IhtarId"
+              method="post">
+
+            <input type="hidden" asp-for="IhtarId" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+                    <label>Borçlu</label>
+                    <select asp-for="MusteriId"
+                            asp-items="ViewBag.Musteriler"
+                            class="form-control">
+                        <option value="">Borçlu seçiniz</option>
+                    </select>
+                    <span asp-validation-for="MusteriId" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Müşteri Ürünleri</label>
+                    <select asp-for="UrunId"
+                            asp-items="ViewBag.Urunler"
+                            class="form-control">
+                        <option value="">Ürün seçiniz</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Noter Adı</label>
+                    <input asp-for="NoterAdi" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Yevmiye No</label>
+                    <input asp-for="YevmiyeNo" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>İhtar Tarihi</label>
+                    <input asp-for="IhtarTarihi"
+                           type="date"
+                           class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>İhtarname Süresi</label>
+                    <input asp-for="IhtarnameSuresi"
+                           type="number"
+                           min="0"
+                           class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Tebliğ Tarihi</label>
+                    <input asp-for="TebligTarihi"
+                           type="date"
+                           class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>İhtar Tebliğ Giriş Tarihi</label>
+                    <input asp-for="IhtarTebligGirisTarihi"
+                           type="date"
+                           class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Kat Tarihi</label>
+                    <input asp-for="KatTarihi"
+                           type="date"
+                           class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>İhtarname Nakit Tutarı</label>
+                    <input asp-for="IhtarnameNakitTutari"
+                           type="number"
+                           step="0.01"
+                           min="0"
+                           class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>İhtarname Gayri Nakit Tutarı</label>
+                    <input asp-for="IhtarnameGayriNakitTutari"
+                           type="number"
+                           step="0.01"
+                           min="0"
+                           class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>İhtar No</label>
+                    <input asp-for="IhtarNo" class="form-control" />
+                </div>
+
+            </div>
+
+            <hr />
+
+            <div class="d-flex justify-content-end mt-4 pb-3">
+                <button type="submit" class="btn btn-warning me-2">
+                    Güncelle
+                </button>
+
+                <a href="/Ihtar" class="btn btn-secondary">
+                    İptal
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

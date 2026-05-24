@@ -1,0 +1,127 @@
+@model HukukTakipWeb.Models.Musteri
+
+@{
+    ViewData["Title"] = "Yeni Müşteri Ekle";
+}
+
+<h2 class="mb-4">Yeni Müşteri Ekle</h2>
+
+<form method="post">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+    <div class="row">
+
+        <div class="col-md-4 mb-3">
+            <label>Müşteri No</label>
+            <input asp-for="MusteriNo" class="form-control" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Ad / Ünvan</label>
+            <input asp-for="AdUnvan" class="form-control" required />
+            <span asp-validation-for="AdUnvan" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Soyad</label>
+            <input asp-for="BorcluSoyadi" class="form-control" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>TCKN</label>
+            <input asp-for="Tckn" class="form-control" maxlength="11" minlength="11" required />
+            <span asp-validation-for="Tckn" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Doğum Tarihi</label>
+            <input asp-for="DogumTarihi" type="date" class="form-control" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Doğum Yeri</label>
+            <input asp-for="DogumYeri" class="form-control" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Cinsiyet</label>
+            <select asp-for="Cinsiyet" class="form-control">
+                <option value="">Seçiniz</option>
+                <option>Erkek</option>
+                <option>Kadın</option>
+            </select>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Medeni Durum</label>
+            <select asp-for="MedeniDurum" class="form-control">
+                <option value="">Seçiniz</option>
+                <option>Bekar</option>
+                <option>Evli</option>
+            </select>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Baba Adı</label>
+            <input asp-for="BabaAdi" class="form-control" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Anne Adı</label>
+            <input asp-for="AnneAdi" class="form-control" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Şehir</label>
+            <input asp-for="Sehir" class="form-control" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>İlçe</label>
+            <input asp-for="Ilce" class="form-control" />
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <label>Adres</label>
+            <textarea asp-for="Adres" class="form-control"></textarea>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Vergi Dairesi</label>
+            <input asp-for="VergiDairesi" class="form-control" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Vergi No</label>
+            <input asp-for="VergiNo" class="form-control" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Borçlu Türü</label>
+            <select asp-for="BorcluTuru" class="form-control">
+                <option value="">Seçiniz</option>
+                <option>Bireysel</option>
+                <option>Kurumsal</option>
+            </select>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Borçlu Tipi</label>
+            <select asp-for="BorcluTipi" class="form-control">
+            </select>
+        </div>
+
+        <div class="col-md-4 mb-3 d-flex align-items-center">
+            <div class="form-check mt-4">
+                <input asp-for="HayattaMi" class="form-check-input" checked />
+                <label class="form-check-label">Hayatta mı?</label>
+            </div>
+        </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-success">Kaydet</button>
+    <a href="/Musteri" class="btn btn-secondary">Geri Dön</a>
+
+</form>

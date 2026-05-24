@@ -1,0 +1,128 @@
+@model HukukTakipWeb.Models.Urun
+
+@{
+    ViewData["Title"] = "Yeni Ürün";
+}
+
+<div class="card shadow border-0">
+    <div class="card-header bg-dark text-white">
+        <h4 class="mb-0">Ürün Oluştur</h4>
+    </div>
+
+    <div class="card-body">
+        <form method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+                    <label>Borçlu</label>
+                    <select asp-for="MusteriId"
+                            asp-items="ViewBag.Musteriler"
+                            class="form-control">
+                        <option value="">Borçlu seçiniz</option>
+                    </select>
+                    <span asp-validation-for="MusteriId" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Ürün Adı</label>
+                    <input asp-for="UrunAdi" class="form-control" />
+                    <span asp-validation-for="UrunAdi" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Kredi Birim Kodu</label>
+                    <input asp-for="KrediBirimKodu" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Kredi Mudi No</label>
+                    <input asp-for="KrediMudiNo" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Takip Miktarı</label>
+                    <input asp-for="TakipMiktari" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Döviz Tipi</label>
+                    <select asp-for="DovizTipi" class="form-control">
+                        <option value="">Seçiniz</option>
+                        <option value="TL">TL - Türk Lirası</option>
+                        <option value="USD">USD - Amerikan Doları</option>
+                        <option value="EUR">EUR - Euro</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Aylık Faiz Oranı</label>
+                    <input asp-for="AylikFaizOrani" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Takip Tarihi</label>
+                    <input asp-for="TakipTarihi" type="date" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Masraf Mudi No</label>
+                    <input asp-for="MasrafMudiNo" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Masraf Bakiyesi</label>
+                    <input asp-for="MasrafBakiyesi" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Faiz Mudi No</label>
+                    <input asp-for="FaizMudiNo" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Faiz Bakiyesi</label>
+                    <input asp-for="FaizBakiyesi" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Takip Birim Kodu</label>
+                    <input asp-for="TakipBirimKodu" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Takip Mudi No</label>
+                    <input asp-for="TakipMudiNo" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Avukat</label>
+                    <select asp-for="AvukatId"
+                            asp-items="ViewBag.Avukatlar"
+                            class="form-control">
+                        <option value="">Avukat seçiniz</option>
+                    </select>
+                </div>
+
+                <div class="col-md-12 mb-3">
+                    <label>Açıklama</label>
+                    <textarea asp-for="Aciklama" rows="4" class="form-control"></textarea>
+                </div>
+
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-success me-2">
+                    Kaydet
+                </button>
+
+                <a href="/Urun" class="btn btn-secondary">
+                    İptal
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>

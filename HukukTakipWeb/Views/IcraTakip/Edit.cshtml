@@ -1,0 +1,226 @@
+@model HukukTakipWeb.Models.IcraTakip
+
+@{
+    ViewData["Title"] = "İcra Takibi Güncelle";
+}
+
+<div class="card shadow border-0">
+    <div class="card-header bg-dark text-white">
+        <h4 class="mb-0">İcra Takibi Güncelle</h4>
+    </div>
+
+    <div class="card-body">
+        <form method="post">
+
+            <input type="hidden" asp-for="IcraTakipId" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+                    <label>Borçlu</label>
+
+                    <select asp-for="MusteriId"
+                            asp-items="ViewBag.Musteriler"
+                            class="form-control"
+                            id="musteriSelect">
+
+                        <option value="">Borçlu seçiniz</option>
+
+                    </select>
+
+                    <span asp-validation-for="MusteriId" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Avukat</label>
+
+                    <select asp-for="AvukatId"
+                            asp-items="ViewBag.Avukatlar"
+                            class="form-control"
+                            id="avukatSelect">
+
+                        <option value="">Avukat seçiniz</option>
+
+                    </select>
+
+                    <span asp-validation-for="AvukatId" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Avukat Tevzi No</label>
+                    <input asp-for="AvukatTevziNo" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Takip Tarihi</label>
+                    <input asp-for="TakipTarihi" type="date" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Takip Tipi</label>
+
+                    <select asp-for="TakipTipi" class="form-control">
+
+                        <option value="">Seçiniz</option>
+                        <option>İlamsız Takip</option>
+                        <option>İlamlı Takip</option>
+
+                    </select>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>İhtarlar</label>
+
+                    <select asp-for="IhtarId"
+                            asp-items="ViewBag.Ihtarlar"
+                            class="form-control"
+                            id="ihtarSelect">
+
+                        <option value="">İhtar seçiniz</option>
+
+                    </select>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>İhtar Konusu Ürünler</label>
+
+                    <select asp-for="UrunId"
+                            asp-items="ViewBag.Urunler"
+                            class="form-control"
+                            id="urunSelect">
+
+                        <option value="">Ürün seçiniz</option>
+
+                    </select>
+
+                    <span asp-validation-for="UrunId" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>İcra Müdürlüğü</label>
+                    <input asp-for="IcraMudurlugu" class="form-control" />
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label>İcra Dosya Yılı</label>
+                    <input asp-for="IcraDosyaYili" class="form-control" />
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label>İcra Dosya No</label>
+                    <input asp-for="IcraDosyaNo" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Mahiyet Kodu</label>
+                    <input asp-for="MahiyetKodu" class="form-control" />
+                </div>
+
+            </div>
+
+            <div class="d-flex justify-content-end">
+
+                <button type="submit" class="btn btn-warning me-2">
+                    Güncelle
+                </button>
+
+                <a href="/IcraTakip" class="btn btn-secondary">
+                    İptal
+                </a>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+
+        document.getElementById("musteriSelect")
+            .addEventListener("change", function () {
+
+                var musteriId = this.value;
+
+                // Temizle
+                document.getElementById("avukatSelect").value = "";
+
+                document.getElementById("ihtarSelect").innerHTML =
+                    '<option value="">İhtar seçiniz</option>';
+
+                document.getElementById("urunSelect").innerHTML =
+                    '<option value="">Ürün seçiniz</option>';
+
+                if (!musteriId)
+                    return;
+
+                // Avukat getir
+                fetch("/IcraTakip/MusteriAvukatGetir/" + musteriId)
+
+                    .then(response => response.json())
+
+                    .then(data => {
+
+                        if (data.avukatId) {
+
+                            document.getElementById("avukatSelect").value =
+                                data.avukatId;
+                        }
+                    });
+
+                // İhtar getir
+                fetch("/IcraTakip/MusteriIhtarlariGetir/" + musteriId)
+
+                    .then(response => response.json())
+
+                    .then(data => {
+
+                        var ihtarSelect =
+                            document.getElementById("ihtarSelect");
+
+                        ihtarSelect.innerHTML =
+                            '<option value="">İhtar seçiniz</option>';
+
+                        data.forEach(function (ihtar) {
+
+                            var option =
+                                document.createElement("option");
+
+                            option.value = ihtar.ihtarId;
+                            option.text = ihtar.ihtarNo;
+
+                            ihtarSelect.appendChild(option);
+                        });
+                    });
+
+                // Ürün getir
+                fetch("/IcraTakip/MusteriUrunleriGetir/" + musteriId)
+
+                    .then(response => response.json())
+
+                    .then(data => {
+
+                        var urunSelect =
+                            document.getElementById("urunSelect");
+
+                        urunSelect.innerHTML =
+                            '<option value="">Ürün seçiniz</option>';
+
+                        data.forEach(function (urun) {
+
+                            var option =
+                                document.createElement("option");
+
+                            option.value = urun.urunId;
+                            option.text = urun.urunAdi;
+
+                            urunSelect.appendChild(option);
+                        });
+                    });
+            });
+
+    </script>
+}

@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Hukuk Takip Yönetim Sistemi</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/HukukTakipWeb.styles.css" asp-append-version="true" />
+
+    <style>
+        body {
+            background-color: #f5f6fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .custom-navbar {
+            background: #1f232b;
+            padding-top: 14px;
+            padding-bottom: 14px;
+        }
+
+        .custom-nav-link {
+            color: rgba(255,255,255,0.90) !important;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 10px 18px !important;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .custom-nav-link:hover {
+            background-color: rgba(255,255,255,0.10);
+            color: white !important;
+        }
+
+        .logout-btn {
+            border-radius: 10px;
+            padding: 8px 18px;
+            font-weight: 600;
+        }
+
+        main {
+            min-height: 75vh;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    @{
+        var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+        var action = ViewContext.RouteData.Values["action"]?.ToString();
+
+        bool dashboardPage =
+            controller == "Dashboard" &&
+            action == "Index";
+    }
+
+    @if (!dashboardPage)
+    {
+        <header>
+
+            <nav class="navbar navbar-expand-lg navbar-dark custom-navbar shadow-sm mb-4">
+
+                <div class="container">
+
+                    <button class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav">
+
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+
+                        <ul class="navbar-nav mx-auto align-items-center gap-lg-2">
+
+                            <li class="nav-item">
+                                <a class="nav-link custom-nav-link"
+   asp-controller="Dashboard"
+   asp-action="Index">
+    Ana Sayfa
+</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link custom-nav-link"
+                                   href="/Musteri">
+                                    Müşteriler
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link custom-nav-link"
+                                   href="/Avukat">
+                                    Avukatlar
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link custom-nav-link"
+                                   href="/Urun">
+                                    Ürünler
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link custom-nav-link"
+                                   href="/Ihtar">
+                                    İhtarlar
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link custom-nav-link"
+                                   href="/IcraTakip">
+                                    İcra Takip
+                                </a>
+                            </li>
+
+                        </ul>
+
+                        <div class="d-flex">
+                            <a href="/Auth/Logout"
+                               class="btn btn-outline-warning logout-btn">
+                                Çıkış Yap
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </nav>
+
+        </header>
+    }
+
+    <div class="container flex-grow-1">
+        <main role="main" class="pb-5">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top text-muted bg-white">
+        <div class="container py-3">
+            &copy; 2026 
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

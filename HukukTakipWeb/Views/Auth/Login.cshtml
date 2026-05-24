@@ -1,0 +1,71 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <title>Giriş Yap - Hukuk Takip Yönetim Sistemi</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <style>
+        body {
+            background: #f4f6f9;
+        }
+
+        .login-container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-card {
+            width: 420px;
+            padding: 35px;
+            border-radius: 14px;
+            background: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .login-title {
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <div class="login-card">
+        <h3 class="login-title">Hukuk Takip Yönetim Sistemi</h3>
+
+        @if (ViewBag.Hata != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.Hata
+            </div>
+        }
+
+        <form method="post" asp-controller="Auth" asp-action="Login">
+            <div class="mb-3">
+                <label class="form-label">Kullanıcı Adı</label>
+                <input type="text" name="username" class="form-control" placeholder="Kullanıcı adınızı girin" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Şifre</label>
+                <input type="password" name="password" class="form-control" placeholder="Şifrenizi girin" required />
+            </div>
+
+            <button type="submit" class="btn btn-dark w-100">
+                Giriş Yap
+            </button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
